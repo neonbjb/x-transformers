@@ -1137,9 +1137,11 @@ class XTransformer(nn.Module):
         enc_transformer_kwargs = pick_and_pop(['num_tokens', 'max_seq_len'], enc_kwargs)
         enc_transformer_kwargs['emb_dropout'] = enc_kwargs.pop('emb_dropout', 0)
         enc_transformer_kwargs['num_memory_tokens'] = enc_kwargs.pop('num_memory_tokens', None)
+        enc_transformer_kwargs['use_pos_emb'] = enc_kwargs.pop('use_pos_emb', True)
 
         dec_transformer_kwargs = pick_and_pop(['num_tokens', 'max_seq_len'], dec_kwargs)
         dec_transformer_kwargs['emb_dropout'] = dec_kwargs.pop('emb_dropout', 0)
+        dec_transformer_kwargs['use_pos_emb'] = dec_kwargs.pop('use_pos_emb', True)
 
         self.encoder = TransformerWrapper(
             **enc_transformer_kwargs,
